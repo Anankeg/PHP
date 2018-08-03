@@ -23,7 +23,7 @@ session_start();
         <div class="user">
             <?php
 if ($_SESSION['logflag']) {
-            print '<span>'.$_SESSION['name'].'</span>';
+    print '<span>' . $_SESSION['name'] . '</span>';
     ?>
             <span>&nbsp|&nbsp</span>
             <a href=".\exitlog.php">退出登录</a>
@@ -50,7 +50,7 @@ if ($_SESSION['logflag']) {
     ?>
             <table width="800" height="80" border="1" align="center">
                 <?php
-$fh = fopen('D:/GitHub/Python/data2.csv', 'rb');
+$fh = fopen('./data2.csv', 'rb');
     if (!$fh) {
         die("Can't open csvdata.csv: $php_errormsg");
     }

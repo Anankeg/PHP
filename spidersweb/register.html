@@ -6,17 +6,22 @@
     </head>
     <body>
         <form name="register" action="register.php" method="POST" align="center">
-            <p>用户名：<br/>
-            <input type="text" name="name">
+            <p>
+            <input type="text" placeholder="用户名" name="name">
             </p>
-            <p>密码：<br/>
-                <input type="password" name="password">
+            <p>
+                <input type="password" placeholder="密码" name="password">
             </p>
-            <p>手机号：<br/>
-                <input type="text" name="phone">
+            <p>
+                <input type="text" placeholder="手机号" name="phone">
             </p>
-            <p>邮箱：<br/>
-                <input type="text" name="email">
+            <p>
+                <input type="text" placeholder="邮箱" name="email">
+            </p>
+            <p>
+                <input type="text" placeholder="验证码" name="verifycode" class="captcha"><br><br>
+                <img id="captcha_img" src="setverifycode.php?r=<?php echo rand();?>" alt="验证码">
+                <label><a href="javascript:void(0)" onclick="document.getElementById('captcha_img').src='setverifycode.php?r='+Math.random()">换一个</a> </label>
             </p>
             <p>
                 <input type="submit" name="submit" value="注册">

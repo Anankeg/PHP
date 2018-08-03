@@ -8,6 +8,8 @@ function sendMail($to, $title, $content)
 {
     include_once "./PHPMailer/src/PHPMailer.php";
     include_once "./PHPMailer/src/SMTP.php";
+    include_once "./PHPMailer/src/OAuth.php";
+    include_once "./PHPMailer/src/Exception.php";
     //引入PHPMailer的核心文件 使用require_once包含避免出现PHPMailer类重复定义的警告
     // require_once "./PHPMailer/src/PHPMailer.php";
     // require_once "./PHPMailer/src/SMTP.php";

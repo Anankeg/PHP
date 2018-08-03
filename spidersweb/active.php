@@ -4,6 +4,7 @@ $verify = stripslashes(trim($_GET['verify']));
 echo $verify;
 //print_r($verify);
 $nowtime = time();
+$con = my_sqli();
 $sql = "select id,token_exptime from account where regstatus='0' and token='$verify'";
 echo $sql;
 $query = mysqli_query($con, $sql);
