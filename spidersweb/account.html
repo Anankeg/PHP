@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>个人中心页面</title>
+        <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+        <script src="changeAvatar.js?v=1"></script>
+    </head>
+    <body>
+        <!-- #显示头div,提交form,其他html样式代码先略去 -->
+        <div class="avatar">
+          <img src="./images/avatar/default-user.jpg"/>
+        </div>
+        <form id="uploadForm" enctype="multipart/form-data" method="post">
+             <!-- 更改头像 -->
+            <input type="file" name="file" id="file" accept="image/*" class="hide">
+           
+        
+        </form>
+    </body>
+</html>

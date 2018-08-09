@@ -21,7 +21,6 @@ else { //若收到submit消息则处理登录信息
                     $_SESSION['logflag'] = 1;
                     $_SESSION['name'] = $userinfo['username'];
                     $_SESSION['phone'] = $phone;
-                    $_SESSION['userinfo'] = $userinfo;
                     header("refresh:1;url=index.php"); //如果成功跳转至welcome.html页面
                     exit;
                 

@@ -22,6 +22,6 @@ while($row=mysqli_fetch_array($query)){
         'price' => $row['price']
      );
 }
-print_r($arr);
+// print_r($arr);
 echo json_encode($arr);
 ?>
