@@ -3,20 +3,53 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>用户注册界面</title>
-    </head>
-    <body>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <!--theme-style-->
+        <link href="css/style.css?v=1" rel="stylesheet" type="text/css" media="all" />	
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta property="og:title" content="Vide" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Crude Oil  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!---->
+        <script src="js/bootstrap.min.js"></script>
+        <!---->
+        <!--JS for animate-->
+            <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+            <script src="js/wow.min.js"></script>
+                <script>
+                    new WOW().init();
+                </script>
+            <!--//end-animate-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="banner-section">
+        <div class="container">
+            <div class="banner-center wow fadeInRight animated animated" data-wow-delay="0.4s">
+                <h3>Please Register</h3>
+                <div class="details-section">
+
         <form name="register" action="register.php" method="POST" align="center">
             <p>
             <input type="text" placeholder="用户名" name="name">
             </p>
             <p>
-                <input type="password" placeholder="密码" name="password">
+                <input type="password" class="mail" placeholder="密码" name="password">
             </p>
             <p>
                 <input type="text" placeholder="手机号" name="phone">
             </p>
             <p>
-                <input type="text" placeholder="邮箱" name="email">
+                <input type="text" class="mail" placeholder="邮箱" name="email">
             </p>
             <p>
                 <input type="text" placeholder="验证码" name="verifycode" class="captcha"><br><br>
@@ -30,5 +63,10 @@
             </p>
             
         </form>
+</div>
+</div>
+</div>
+</div>
+
     </body>
 </html>

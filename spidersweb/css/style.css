@@ -116,7 +116,7 @@ div#bs-example-navbar-collapse-1 {
 }
 
 .banner-section {
-    background:url(../images/ba11.jpg) no-repeat 0px 0px;
+    background:url(../images/dp.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	min-height:686px;
 }
@@ -145,12 +145,22 @@ div#bs-example-navbar-collapse-1 {
     border: none;
 	font-family: 'Play', sans-serif;
 }
+.details-section input[type="password"] {
+    width: 100%;
+     padding: 0.8em;
+     background: #F8F6DE;
+     font-size: 1em;
+     outline: none;
+     border: none;
+     font-family: 'Play', sans-serif;
+     
+ }
 .mail {
     margin: 0.5em 0;
 }
 .details-section input[type="submit"] {
     width: 37%;
-    display: block;
+    /* display: block; */
     font-size: 1em;
     padding: 0.5em 0;
     text-transform: capitalize;
@@ -796,7 +806,7 @@ div#bs-example-navbar-collapse-1 {
 /**about**/
 /**about**/
 .banner {
-    background: url(../images/ba11.jpg) no-repeat 0px 0px;
+    background: url(../images/dp.jpg) no-repeat 0px 0px;
     background-size: cover;
    min-height: 120px !important;
 }
@@ -1723,7 +1733,7 @@ ul.price-list li {
 }
 @media(max-width:736px){
 .banner-section {
-    background: url(../images/ba11.jpg) no-repeat -97px 0px;
+    background: url(../images/dp.jpg) no-repeat -97px 0px;
     background-size: cover;	
 }
 .banner-center h3 {
@@ -1825,7 +1835,7 @@ ul.price-list li {
     min-height: 90px !important;
 }
 .banner-section {
-    background: url(../images/ba11.jpg) no-repeat -82px 0px;
+    background: url(../images/dp.jpg) no-repeat -82px 0px;
     background-size: cover;
 	    min-height: 380px;
 }
@@ -1887,7 +1897,7 @@ ul.price-list li {
 }
 @media(max-width:600px){
 .banner-section {
-    background: url(../images/ba11.jpg) no-repeat -138px 0px;
+    background: url(../images/dp.jpg) no-repeat -138px 0px;
     background-size: cover;
 	    min-height: 380px;
 }	
@@ -1954,7 +1964,7 @@ ul.price-list li {
     font-size: 1.8em;
 }
 .banner-section {
-    background: url(../images/ba11.jpg) no-repeat -194px 0px;
+    background: url(../images/dp.jpg) no-repeat -194px 0px;
     background-size: cover;
     min-height: 346px;	
 }
@@ -2101,7 +2111,7 @@ h2#h2-bootstrap-heading {
 }
 @media(max-width:414px){
 .banner-section {
-    background: url(../images/ba11.jpg) no-repeat -249px 0px;
+    background: url(../images/dp.jpg) no-repeat -249px 0px;
     background-size: cover;
     min-height: 346px;
 }
@@ -2224,7 +2234,7 @@ ul.price-list li {
     width: 80%;
 }
 .banner-section {
-    background: url(../images/ba11.jpg) no-repeat -250px 0px;
+    background: url(../images/dp.jpg) no-repeat -250px 0px;
     background-size: cover;
     min-height: 315px;
 }

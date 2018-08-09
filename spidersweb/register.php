@@ -5,7 +5,7 @@ include 'connect.php'; //链接数据库
 include 'regemail.php'; //连接发送邮件功能
 include 'checkinput.php';
 if (isset($_POST["cancel"])) {
-    header("refresh:0;url=index.php"); //按取消按钮后跳转至之前的index.html页面
+    header("refresh:0;url=login.html"); //按取消按钮后跳转至之前的index.html页面
 } else if (!isset($_POST['submit'])) {
     exit("错误执行");
 } //判断是否有submit操作

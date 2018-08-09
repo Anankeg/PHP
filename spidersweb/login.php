@@ -4,7 +4,7 @@ include 'connect.php'; //链接数据库
 session_start();
 header("Content-Type: text/html; charset=utf8");
 if (isset($_POST["cancel"])) {
-    header("refresh:0;url=index.php"); //按取消按钮后跳转至之前的index.html页面
+    header("refresh:0;url=register.html"); //按取消按钮后跳转至之前的index.html页面
 } else if (!isset($_POST["submit"])) {
     exit("错误执行"); //若按登录后没有收到submit的信息，则返回错误执行
 } //检测是否有submit操作
