@@ -15,12 +15,12 @@ $(document).ready(function(){
             contentType: false,
             success:function(data){
                 console.log(data);
-                if(data.status=="fail"){
+                if(data.status!=0){
                     alert(data.message);
                 }
                 // #根据上传成功并返回压缩后的图片url，更新img标签src属性
-                if(data.status=="success"){
-                    $(".avatar img").attr("src",data.url+"?"+new Date().getTime());
+                if(data.status==0){
+                    $(".avatar img").attr("src",data.path+"?"+new Date().getTime());
                 }
             },
             error:function(e){

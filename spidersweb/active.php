@@ -1,5 +1,6 @@
 <?php
 include_once "connect.php"; //连接数据库
+include 'sqlStatement.php';//连接数据库操作函数
 $verify = stripslashes(trim($_GET['verify']));
 echo $verify;
 //print_r($verify);

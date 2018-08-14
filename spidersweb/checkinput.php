@@ -118,5 +118,4 @@ function checkEmailstatus($phone, $password, $url)
     mysqli_close(); //关闭数据库
 }
 
-//方法：phone未注册
 

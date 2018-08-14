@@ -2,6 +2,7 @@
 session_start();
 header("Content-Type: text/html; charset=utf8");
 include 'connect.php'; //链接数据库
+include 'sqlStatement.php';//连接数据库操作函数
 include 'regemail.php'; //连接发送邮件功能
 include 'checkinput.php';
 if (isset($_POST["cancel"])) {

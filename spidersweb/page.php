@@ -1,5 +1,6 @@
 <?php
-include_once('connect.php');
+include_once('connect.php');//连接数据库
+include 'sqlStatement.php';//连接数据库操作函数
 
 $page = intval($_POST['pageNum']);
 $total = getrows('goods');//总记录数

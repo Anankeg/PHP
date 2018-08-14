@@ -1,6 +1,7 @@
 <?PHP
 include "checkinput.php"; //连接检查处理php
 include 'connect.php'; //链接数据库
+include 'sqlStatement.php';//连接数据库操作函数
 session_start();
 header("Content-Type: text/html; charset=utf8");
 if (isset($_POST["cancel"])) {
@@ -20,7 +21,8 @@ else { //若收到submit消息则处理登录信息
                     echo "登录成功,正在跳转到商品页面，请稍后。。。";
                     $_SESSION['logflag'] = 1;
                     $_SESSION['name'] = $userinfo['username'];
-                    $_SESSION['phone'] = $phone;
+                    $_SESSION['phone'] = $userinfo['phone'];
+                    $_SESSION['id'] = $userinfo['id'];
                     header("refresh:1;url=index.php"); //如果成功跳转至welcome.html页面
                     exit;
                 
