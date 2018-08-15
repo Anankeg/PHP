@@ -18,13 +18,11 @@ else { //若收到submit消息则处理登录信息
         if (checkVerifycode($verifycode, $_SESSION['code'],$url)) { //验证验证码正确
             $userinfo = checkUser($phone, $password,$url);
             if ($userinfo) { //验证用户存在
-                    echo "登录成功,正在跳转到商品页面，请稍后。。。";
                     $_SESSION['logflag'] = 1;
                     $_SESSION['name'] = $userinfo['username'];
                     $_SESSION['phone'] = $userinfo['phone'];
                     $_SESSION['id'] = $userinfo['id'];
-                    header("refresh:1;url=index.php"); //如果成功跳转至welcome.html页面
-                    exit;
+                    echo '<html><head><Script Language="JavaScript">alert("登录成功");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='index.html'\">"; //修改成功
                 
             }
         }

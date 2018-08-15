@@ -1,4 +1,5 @@
 <?php
+session_start();
 //  include_once "connect.php";
 //方法：判断是否为空
 function checkEmpty($username, $password, $verifycode, $url)
@@ -19,17 +20,31 @@ function checkregEmpty($username, $password, $phone, $email, $verifycode, $url)
 {
     if ($username == null || $password == null) {
         echo '<html><head><Script Language="JavaScript">alert("用户名或密码为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
-    }else {
-        if($phone == null||$email==null){
-        echo '<html><head><Script Language="JavaScript">alert("手机号或邮箱为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";            
-        }else{
+    } else {
+        if ($phone == null || $email == null) {
+            echo '<html><head><Script Language="JavaScript">alert("手机号或邮箱为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
+        } else {
             if ($verifycode == null) {
+                echo '<html><head><Script Language="JavaScript">alert("验证码为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
+            } else {
+                return true;
+            }
+        }
+
+    }
+}
+
+//方法：修改密码页面判空
+function checkPasswordEmpty($password, $newpassword, $newpasswordagain, $verifycode, $url)
+{
+    if ($password == null || $newpassword == null || $newpasswordagain == null) {
+        echo '<html><head><Script Language="JavaScript">alert("原密码或新密码为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
+    } else {
+        if ($verifycode == null) {
             echo '<html><head><Script Language="JavaScript">alert("验证码为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
         } else {
             return true;
         }
-        }
-        
     }
 }
 
@@ -39,7 +54,7 @@ function checkVerifycode($verifycode, $code, $url)
     if ($verifycode == $code) {
         return true;
     } else {
-      //  echo "验证码：".$code;
+        //  echo "验证码：".$code;
         echo '<html><head><Script Language="JavaScript">alert("验证码错误");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
     }
 }
@@ -118,4 +133,13 @@ function checkEmailstatus($phone, $password, $url)
     mysqli_close(); //关闭数据库
 }
 
-
+//判断登录状态
+function checkLogStatus()
+{
+    if ($_SESSION['logflag'] == 1) {
+        return true;
+    } else {
+        echo '<html><head><Script Language="JavaScript">alert("用户未登录，请重新登录");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='login.html'\">"; //手机号码格式不对
+        return false;
+    }
+}

@@ -1,7 +1,5 @@
 <!DOCTYPE HTML>
-<?php
-session_start();
-?>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -24,9 +22,12 @@ session_start();
     <!---->
     <script src="js/bootstrap.min.js"></script>
     <!---->
+    <!-- 登录导航js -->
+    <script src="./log_Bar.js?v=0"></script>
+    <!-- 登录导航js -->
     <!-- 导入页码js -->
     <!-- <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
-        <script src="./pages.js?v=6"></script>
+        <script src="./pages.js?v=8"></script>
     <!--JS for animate-->
         <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
         <script src="js/wow.min.js"></script>
@@ -75,7 +76,7 @@ session_start();
 						<div class="collapse navbar-collapse wow fadeInRight animated animated" data-wow-delay="0.4s" id="bs-example-navbar-collapse-1">
 						  <ul class="nav navbar-nav cl-effect-11">
                           <li class="active"><a href="login.html" data-hover="Home">Home </a></li>
-							<li><a href="index.php" data-hover="About">Goods</a></li>
+							<li><a href="index.html" data-hover="About">Goods</a></li>
 							<li><a href="services.html" data-hover="Services">Services(未上线)</a></li>
 							 <li><a data-hover="Gallery" href="gallery.html">Gallery(未上线)</a></li>
 							  <li><a  href="codes.html" data-hover="Codes">Codes(未上线)</a></li>
@@ -93,22 +94,16 @@ session_start();
 
 
 <div class="user">
-<?php
-if ($_SESSION['logflag']) {
-    print '<span>' . $_SESSION['name'] . '</span>';
-    ?>
-            <span>&nbsp|&nbsp</span>
-            <a href=".\exitlog.php">退出登录</a>
-            <?php
-} else {
-    ?>
-            <a href=".\login.html">登录</a>
-            <?php
-}
-?>
-        <span>&nbsp|&nbsp</span>
-        <a href=".\register.html">注册</a>
-        </div>
+    <span id='user_Bar'>
+    <span id='username_Bar'></span>
+    <span>&nbsp|&nbsp</span>
+    </span>
+    <a id='exitlog_Bar' href=".\exitlog.php">退出登录</a>
+    <a id='login_Bar' href=".\login.html">登录</a>
+    <span>&nbsp|&nbsp</span>
+    <a id='register_Bar' href=".\register.html">注册</a>
+    </div>
+
         <hr/>
         <h1 align="center" >商品列表</h1>
         <br/>
@@ -117,9 +112,6 @@ if ($_SESSION['logflag']) {
         <br/>
         <br/>
         <div>
-        <?php
-if ($_SESSION['logflag']) {
-    ?>
  <div id="tablelist">
             <!-- ajax会填充表格代码 -->
 </div>
@@ -127,11 +119,7 @@ if ($_SESSION['logflag']) {
 <div id="pagecount">
             <!-- ajax会填充表格代码 -->
 </div>
-            <?php
-} else {
-    print '<h2 align="center">' . '客官，想浏览数据请先登录哦↑' . '</h2>';
-}
-?>
+
         </div>
     </body>
 </html>

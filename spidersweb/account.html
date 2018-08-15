@@ -5,7 +5,7 @@
     <title>个人中心页面</title>
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="changeAvatar.js?v=2"></script>
-    <script src="account_check_log.js?v=2"></script>
+    <script src="account_check_log.js?v=3"></script>
     <link href="css/myCSS.css?v=8" rel="stylesheet" type="text/css" media="all" />
     <link href="css/bootstrap.css?v=3" rel="stylesheet" type="text/css" media="all" />  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -62,7 +62,7 @@
               <div class="collapse navbar-collapse wow fadeInRight animated animated" data-wow-delay="0.4s" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav cl-effect-11">
                             <li class="active"><a href="login.html" data-hover="Home">Home </a></li>
-                <li><a href="index.php" data-hover="About">Goods</a></li>
+                <li><a href="index.html" data-hover="About">Goods</a></li>
                 <li><a href="services.html" data-hover="Services">Services(未上线)</a></li>
                  <li><a data-hover="Gallery" href="gallery.html">Gallery(未上线)</a></li>
                   <li><a  href="codes.html" data-hover="Codes">Codes(未上线)</a></li>
@@ -79,7 +79,9 @@
   <!--header-->
   
     <!-- #显示头div,提交form,其他html样式代码先略去 -->
-
+    <span id="changePassword" class="btn btn-sm btn-default">
+        <a href="changePassword.html">修改密码</a>
+    </span>
     <div class="avatar">
     <img src="./images/avatar/default-user.jpg"/>
     </div>

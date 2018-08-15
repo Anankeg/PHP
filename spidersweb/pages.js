@@ -17,14 +17,14 @@ function getData(page){
             curPage = page; //当前页
             totalPage = json.totalPage; //总页数
             var table_html = "";
-            table_html += "<table class=\"table\" width=\"800\" height=\"80\" border=\"1\" align=\"center\"><tr class=\"success\"><th>商品名称</th><th>商品描述</th><th>价格</th></tr>";
+            table_html += "<table class=\"table\" width=\"800\" height=\"80\" border=\"1\" align=\"center\"><tr class=\"success\"><th>商品ID</th><th>商品名称</th><th>商品描述</th><th>价格</th></tr>";
             var list = json.list;
             $.each(list,function(index,array){ //遍历json数据列
                 if(array['name'].length > 28){
                  var title_sub = array['name'].substring(0,20); // 获取子字符串。
                 }
                 else var title_sub = array['name'];
-                table_html += "<tr class=\"success\"><td>"+title_sub+"</td><td>"+array['desc']+"</td><td>"+array['price']+"</td><tr>";            
+                table_html += "<tr class=\"success\"><td>"+array['id']+"</td><td>"+title_sub+"</td><td>"+array['desc']+"</td><td>"+array['price']+"</td><tr>";            
             });
             table_html += "</table>";
             $("#tablelist").append(table_html);

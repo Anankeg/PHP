@@ -97,3 +97,12 @@ function addsmallavatar($url, $id)
     $res = mysqli_query($con, $sql);
     return $res;
 }
+
+//更改password
+function updatePassword($newpassword, $password, $phone)
+{
+    $con = my_sqli();
+    $sql = "update account set `password`='$newpassword' where `phone`='$phone' and `password`='$password';";
+    $res = mysqli_query($con, $sql);
+    return $res;
+}
