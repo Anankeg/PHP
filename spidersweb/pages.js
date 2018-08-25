@@ -14,14 +14,14 @@ function getData(page, size=30, where=null){
             curPage = page; //当前页
             totalPage = json.totalPage; //总页数
             var table_html = "";
-            table_html += "<table class=\"table\" width=\"800\" height=\"80\" border=\"1\" align=\"center\"><tr class=\"success\"><th>商品ID</th><th>商品名称</th><th>商品描述</th><th>价格</th></tr>";
+            table_html += "<table class=\"table\" width=\"800\" height=\"80\" border=\"1\" align=\"center\"><tr class=\"success\"><th>商品ID</th><th>商品名称</th><th>商品描述</th><th>价格</th><th>收藏</th></tr>";
             var list = json.list;
             $.each(list,function(index,array){ //遍历json数据列
                 if(array['name'].length > 28){
                  var title_sub = array['name'].substring(0,20); // 获取子字符串。
                 }
                 else var title_sub = array['name'];
-                table_html += "<tr class=\"success\"><td>"+array['id']+"</td><td>"+title_sub+"</td><td>"+array['desc']+"</td><td>"+array['price']+"</td><tr>";            
+                table_html += "<tr class=\"success\"><td>"+array['id']+"</td><td>"+title_sub+"</td><td>"+array['desc']+"</td><td>"+array['price']+"</td><td><button class='"+array['collectclass']+" collect' id=\"collect\" gid='"+array['id']+"' status="+array['collectStatus']+">"+array['collect']+"</button></td><tr>";            
             });
             table_html += "</table>";
             $("#tablelist").append(table_html);
@@ -34,6 +34,29 @@ function getData(page, size=30, where=null){
         }
     });
 }
+
+//改变收藏状态
+function changeCollect(gid, collectStatus, thisitem){
+    var collect;
+    $.ajax({
+        type: 'POST',
+        url: 'collect.php',
+        data: {'gid':gid,'collectStatus':collectStatus},
+        dataType:'json',
+        success:function(json){
+            collect = json.collect; //收藏字段
+            var status = json.collectStatus; //收藏状态
+            var classtype = json.class;
+            $(thisitem).text(collect);
+            $(thisitem).attr("status", status);
+            $(thisitem).attr("class", classtype);
+        },
+        error:function(){
+            alert(collect+"失败");
+        }
+    });
+}
+
 
 //获取分页条
 function getPageBar(){
@@ -72,6 +95,7 @@ function getPageBar(){
     pageStr += "</ul></nav>";
     $("#pagecount").html(pageStr);
     regpageonclik();
+    collectonclick();
 }
 
 $(function(){
@@ -98,8 +122,10 @@ $(function(){
         
         
     });
+    collectonclick();
 });
 
+//分页点击事件函数
 function regpageonclik()
 {
     $("#pagecount li a").on('click',function(){
@@ -117,24 +143,14 @@ function regpageonclik()
             
         }
     });
-    // $("#pageSize").on('change',function(){
-    //     var size = $(this).val();
-    //     var rel = $("#currentpage").attr("rel");
-    //     if(size!=0){
-    //         getData(rel, size);
-    //     }
-    // });
-    // $("#searchsubmit").on('click',function(){
-    //     var size = $("#pageSize").val();
-    //     var rel = $("#currentpage").attr("rel");
-    //     var where = $("#search").text();
-    //     if(size!=0){
-    //         getData(rel, size, where);
-    //     }else{
-    //         size = 30;
-    //         getData(rel, size, where);
-    //     }
-        
-        
-    // });
+}
+
+//收藏点击时间函数
+function collectonclick(){
+    $(".collect").on('click',function(){
+        var gid = $(this).attr("gid");
+        var collectStatus=$(this).attr("status");
+        var thisitem = $(this);
+        changeCollect(gid, collectStatus, thisitem);
+    });
 }

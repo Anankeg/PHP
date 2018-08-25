@@ -102,6 +102,7 @@ function getaccount($id)
 
 }
 
+//avatar
 //根据id更改数据库中account表相应元组的avatar数据
 function addavatar($url, $id)
 {
@@ -121,7 +122,9 @@ function addsmallavatar($url, $id)
     $res = mysqli_query($con, $sql);
     return $res;
 }
+//avatar
 
+//password
 //更改password
 function updatePassword($newpassword, $password, $phone)
 {
@@ -131,3 +134,38 @@ function updatePassword($newpassword, $password, $phone)
     $res = mysqli_query($con, $sql);
     return $res;
 }
+//password
+
+//collec
+//查询数据库收藏表中的收藏数据
+function getCollectStatus($gid,$uid)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "select * from collect where `gid`='$gid' and `uid`='$uid'";
+    $res = mysqli_query($con, $sql);
+    $rows = mysqli_num_rows($res); //获取行数
+    return $rows;
+}
+
+//删除数据库中的收藏表的元组
+function delCollectitem($gid,$uid)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "delete from collect where `gid`='$gid' and `uid`='$uid'";
+    $res = mysqli_query($con, $sql);
+    return $res;
+}
+
+//增加数据库中的收藏表的元组
+function addCollectitem($gid, $uid)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = " insert into collect (`gid`,`uid`) values ('$gid','$uid');";
+    $res = mysqli_query($con, $sql);
+    return $res;
+}
+
+//collect
