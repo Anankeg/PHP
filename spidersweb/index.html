@@ -27,7 +27,7 @@
     <!-- 登录导航js -->
     <!-- 导入页码js -->
     <!-- <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
-        <script src="./pages.js?v=8"></script>
+        <script src="./pages.js?v=23"></script>
     <!--JS for animate-->
         <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
         <script src="js/wow.min.js"></script>
@@ -119,7 +119,18 @@
 <div id="pagecount">
             <!-- ajax会填充表格代码 -->
 </div>
-
+<div "input-group mb-3">
+        <select class="custom-select" id="pageSize">
+                <option value="0">请选择页码条数</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+        </select>
+</div>
+<div>
+    <input id="search" type="text" size="15"/> 
+    <button class="btn btn-1 btn-default" id="searchsubmit">Search</button>
+</div>
         </div>
     </body>
 </html>

@@ -6,6 +6,7 @@ include_once "connect.php";
 function insert($name, $password, $phone, $email, $token, $token_exptime, $regtime)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "insert into account(id,username,password,phone,email,`token`,`token_exptime`,`regtime`) values (null,'$name','$password','$phone','$email','$token','$token_exptime','$regtime');"; //向数据库插入表单传来的值的sql
     // echo $addaccount;
     $result = mysqli_query($con, $sql); //执行sql
@@ -16,7 +17,24 @@ function insert($name, $password, $phone, $email, $token, $token_exptime, $regti
 function getrows($tablename)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "select * from goods;";
+    $res = mysqli_query($con, $sql);
+    $rows = mysqli_num_rows($res); //获取行数
+    if ($rows) {
+        return $rows;
+    } else {
+        return 0;
+    }
+
+}
+
+//查询条件下数据库行数
+function getConditionRows($tablename,$where)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "select * from goods where name like '%$where%' or `desc` like '%$where%'";
     $res = mysqli_query($con, $sql);
     $rows = mysqli_num_rows($res); //获取行数
     if ($rows) {
@@ -31,6 +49,7 @@ function getrows($tablename)
 function getcolums($tablename)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "select * from '.$tablename.';";
     $res = mysqli_query($con, $sql);
     $colums = mysqli_num_fields($res); //获取行数
@@ -46,6 +65,7 @@ function getcolums($tablename)
 function getdata($tablename,$condition,$start,$limit)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "select id,name,`desc`,price from goods order by '.$condition.' desc limit $start,$limit;";
     $res = mysqli_query($con,$sql);
     return $res;
@@ -55,6 +75,7 @@ function getdata($tablename,$condition,$start,$limit)
 function getid($tablename)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "select id from '.$tablename.';";
     $res = mysqli_query($con, $sql);
     if ($res) {
@@ -69,6 +90,7 @@ function getid($tablename)
 function getaccount($id)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "select * from account where `id`=$id;";
     $res = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($res);
@@ -84,6 +106,7 @@ function getaccount($id)
 function addavatar($url, $id)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "update account set avatar='$url' where `id`='$id';";
     $res = mysqli_query($con, $sql);
     return $res;
@@ -93,6 +116,7 @@ function addavatar($url, $id)
 function addsmallavatar($url, $id)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "update account set smallavatar='$url' where `id`='$id';";
     $res = mysqli_query($con, $sql);
     return $res;
@@ -102,6 +126,7 @@ function addsmallavatar($url, $id)
 function updatePassword($newpassword, $password, $phone)
 {
     $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "update account set `password`='$newpassword' where `phone`='$phone' and `password`='$password';";
     $res = mysqli_query($con, $sql);
     return $res;
