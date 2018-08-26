@@ -168,4 +168,34 @@ function addCollectitem($gid, $uid)
     return $res;
 }
 
+//收藏条数
+function getCollectrows($uid)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "select * from collect where uid='$uid';";
+    $res = mysqli_query($con, $sql);
+    $rows = mysqli_num_rows($res); //获取行数
+    if ($rows) {
+        return $rows;
+    } else {
+        return 0;
+    }
+
+}
+
+//收藏表查询商品函数
+function getCollectgoods($gid)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "select id,name,`desc`,price from goods where id='$gid'";
+    $sqlquery = mysqli_query($con, $sql);
+    $rowg = mysqli_fetch_array($sqlquery);
+    if ($rowg) {
+        return $rowg;
+    } else {
+        return 0;
+    }
+}
 //collect
