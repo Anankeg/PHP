@@ -16,6 +16,8 @@ if ($logflag == 1) {
     $arr['pageSize'] = $pageSize;
     $arr['totalPage'] = $totalPage;
     $arr['page'] = $page + 1;
+    $arr['uid'] = $uid;
+    $arr['name'] = $_SESSION['name'];
     //$res = getdata('goods','id',$startPage,$pageSize);
     $con = my_sqli();
     mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
@@ -49,8 +51,8 @@ if ($logflag == 1) {
     }
     $arr['logflag'] = 1;
 } else {
-        $arr['logflag'] = 0;
-    }
+    $arr['logflag'] = 0;
+}
 
 // print_r($arr);
 echo json_encode($arr);

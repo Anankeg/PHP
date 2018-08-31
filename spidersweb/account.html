@@ -4,8 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>个人中心页面</title>
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-    <script src="changeAvatar.js?v=2"></script>
-    <script src="account_check_log.js?v=3"></script>
+  
     <link href="css/myCSS.css?v=8" rel="stylesheet" type="text/css" media="all" />
     <link href="css/bootstrap.css?v=3" rel="stylesheet" type="text/css" media="all" />  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -25,7 +24,8 @@
     <!---->
     <script src="js/bootstrap.min.js"></script>
     <!---->
-    
+    <script src="changeAvatar.js?v=2"></script>
+    <script src="account_check_log.js?v=6"></script>
     <!--JS for animate-->
         <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
         <script src="js/wow.min.js"></script>
@@ -77,11 +77,15 @@
       </div>
     </div>
   <!--header-->
-  
+  <div>
     <!-- #显示头div,提交form,其他html样式代码先略去 -->
     <span id="changePassword" class="btn btn-sm btn-default">
         <a href="changePassword.html">修改密码</a>
     </span>
+    <span id="invite" class="btn btn-sm btn-default">
+      <a id="invitehref" href="http://localhost/spidersweb/invite.html">邀请好友注册</a>
+    </span>
+  </div>
     <div class="avatar">
     <img src="./images/avatar/default-user.jpg"/>
     </div>

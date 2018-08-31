@@ -71,7 +71,7 @@ function checkUser($username, $password, $url)
     if ($rows) {
         return $rows;
     } else {
-        echo '<html><head><Script Language="JavaScript">alert("用户不存在");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
+        echo '<html><head><Script Language="JavaScript">alert("用户或密码错误");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
     }
     mysqli_close(); //关闭数据库
 }

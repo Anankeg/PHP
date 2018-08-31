@@ -1,11 +1,11 @@
 var curPage = 1; //当前页码
-var total,pageSize,totalPage,logflag;
+var total,pageSize,totalPage,logflag,uid;
 //获取数据
-function getData(page, size=30){
+function getData(page, size=30, uid=0){
     $.ajax({
         type: 'POST',
-        url: 'collectpage.php',
-        data: {'pageNum':page-1,'pageSize':size},
+        url: 'collectshare.php',
+        data: {'pageNum':page-1,'pageSize':size,'uid':uid},
         dataType:'json',
         success:function(json){
             $("#tablelist").empty();
@@ -13,38 +13,21 @@ function getData(page, size=30){
             pageSize = json.pageSize; //每页显示条数
             curPage = page; //当前页
             totalPage = json.totalPage; //总页数
-            logflag = json.logflag;
              var table_html = "";
-            if(logflag==1){
-               
-                table_html += "<table class=\"table\" width=\"800\" height=\"80\" border=\"1\" align=\"center\"><tr class=\"success\"><th>商品ID</th><th>商品名称</th><th>商品描述</th><th>价格</th><th>收藏</th></tr>";
-                var list = json.list;
-                $.each(list,function(index,array){ //遍历json数据列
-                    if(array['name'].length > 28){
-                    var title_sub = array['name'].substring(0,20); // 获取子字符串。
-                    }
-                    else var title_sub = array['name'];
-                    table_html += "<tr class=\"success\"><td>"+array['id']+"</td><td>"+title_sub+"</td><td>"+array['desc']+"</td><td>"+array['price']+"</td><td><button class='"+array['collectclass']+" collect' id=\"collect\" gid='"+array['id']+"' status="+array['collectStatus']+">"+array['collect']+"</button></td><tr>";            
-                });
-                table_html += "</table>";
-                $("#tablelist").append(table_html);
-                var share_html = "<script src=\"http://tjs.sjs.sinajs.cn/open/api/js/wb.js\" type=\"text/javascript\" charset=\"utf-8\"></script><wb:share-button addition=\"simple\" type=\"button\" language=\"zh_cn\"  url=\"http://localhost/spidersweb/collectshare.html?id="+json.uid+"&name="+json.name+"\" title=\"我的心愿单\"></wb:share-button>";
-                $("#weiboshare").append(share_html);
-            }else{
-                table_html = " <h1 align=\"center\" >请先登录后才能看见收藏哦</h1>"
-                $("#tablelist").append(table_html);
-            }
-           
+            table_html += "<table class=\"table\" width=\"800\" height=\"80\" border=\"1\" align=\"center\"><tr class=\"success\"><th>商品ID</th><th>商品名称</th><th>商品描述</th><th>价格</th></tr>";
+            var list = json.list;
+            $.each(list,function(index,array){ //遍历json数据列
+                if(array['name'].length > 28){
+                var title_sub = array['name'].substring(0,20); // 获取子字符串。
+                }
+                else var title_sub = array['name'];
+                table_html += "<tr class=\"success\"><td>"+array['id']+"</td><td>"+title_sub+"</td><td>"+array['desc']+"</td><td>"+array['price']+"</td><tr>";            
+            });
+            table_html += "</table>";
+            $("#tablelist").append(table_html);
         },
-        complete:function(
-
-        ){ //生成分页条
-            if(logflag==1){
-                getPageBar(); 
-                $("#pageSize").show();
-            }else{
-                $("#pageSize").hide();
-            }
+        complete:function(){ //生成分页条
+            getPageBar();   
         },
         error:function(){
             alert("数据加载失败");
@@ -52,28 +35,19 @@ function getData(page, size=30){
     });
 }
 
-//改变收藏状态
-function changeCollect(gid, collectStatus, thisitem){
-    var collect;
-    $.ajax({
-        type: 'POST',
-        url: 'collect.php',
-        data: {'gid':gid,'collectStatus':collectStatus},
-        dataType:'json',
-        success:function(json){
-            collect = json.collect; //收藏字段
-            var status = json.collectStatus; //收藏状态
-            var classtype = json.class;
-            $(thisitem).text(collect);
-            $(thisitem).attr("status", status);
-            $(thisitem).attr("class", classtype);
-        },
-        error:function(){
-            alert(collect+"失败");
-        }
-    });
-}
-
+//获取url参数
+function GetRequest() { 
+	var url = location.search; //获取url中"?"符后的字串 
+	var theRequest = new Object(); 
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1); 
+		strs = str.split("&"); 
+		for(var i = 0; i < strs.length; i ++) {
+			theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]); 
+		} 
+	} 
+	return theRequest; 
+} 
 
 //获取分页条
 function getPageBar(){
@@ -112,32 +86,30 @@ function getPageBar(){
     pageStr += "</ul></nav>";
     $("#pagecount").html(pageStr);
     regpageonclik();
-    collectonclick();
 }
 
 $(function(){
-    getData(1);
+    var urlparam = GetRequest()
+    uid = urlparam['id'];
+    var name = urlparam['name'];
+    if(uid){
+        getData(1,30,uid);
+        $("#h1").text(name + "的收藏列表")
+    }else{
+        $("#tablelist").empty();
+        table_html = "<h1 align=\"center\" >此分享已失效哦</h1>";
+        $("#tablelist").append(table_html);
+        $("#pageSize").hide();
+    }
+    
     $("#pageSize").on('change',function(){
         var size = $(this).val();
         var rel = 1;
         if(size!=0){
-            getData(rel, size);
+            getData(rel, size, uid);
         }
     });
-    $("#searchsubmit").on('click',function(){
-        var size = $("#pageSize").val();
-        var rel = 1;
-        // alert(where);
-        if(size!=0){
-            getData(rel, size);
-        }else{
-            size = 30;
-            getData(rel, size);
-        }
-        
-        
-    });
-    collectonclick();
+   
 });
 
 //分页点击事件函数
@@ -146,26 +118,15 @@ function regpageonclik()
     $("#pagecount li a").on('click',function(){
         var rel = $(this).attr("rel");
         var size=$("#pageSize").val();
-        var where = $("#search").val();
         if(rel){
             if(size!=0){
-                getData(rel,size,where);
+                getData(rel,size, uid);
             }else{
                 size = 30;
-            getData(rel, size, where);
+            getData(rel, size, uid);
             }
             
             
         }
-    });
-}
-
-//收藏点击时间函数
-function collectonclick(){
-    $(".collect").on('click',function(){
-        var gid = $(this).attr("gid");
-        var collectStatus=$(this).attr("status");
-        var thisitem = $(this);
-        changeCollect(gid, collectStatus, thisitem);
     });
 }
