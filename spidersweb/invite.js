@@ -13,7 +13,19 @@ function GetRequest() {
 
 
 $(document).ready(function(){
-    var urlparam = GetRequest();
-    $("#iid").val(urlparam['id']);
-    $("#iid").hide();
+	var s_url = location.search;
+	var urlparam = GetRequest();
+	var parentid = urlparam['id'];
+	if(parentid){
+		$("#parentid").val(parentid);
+		$("#parentid").hide();
+		$("#parenturl").val(s_url);
+    	$("#parenturl").hide();
+	}else{
+		$(".details-section").empty();
+		var invitefail_html = "<h1 align=\"center\" >此分享已失效哦</h1>";
+		$(".details-section").append(invitefail_html);
+
+	}
+    
 });

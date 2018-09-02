@@ -2,12 +2,12 @@
 include_once "connect.php"; //连接数据库
 include 'sqlStatement.php';//连接数据库操作函数
 $verify = stripslashes(trim($_GET['verify']));
-echo $verify;
+// echo $verify;
 //print_r($verify);
 $nowtime = time();
 $con = my_sqli();
 $sql = "select id,token_exptime from account where regstatus='0' and token='$verify'";
-echo $sql;
+// echo $sql;
 $query = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($query);
 if ($row) {

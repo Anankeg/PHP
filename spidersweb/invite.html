@@ -22,7 +22,7 @@
         <script src="js/bootstrap.min.js"></script>
         <!---->
         <!-- 导入invite.js -->
-        <script src="invite.js?v=0"></script>
+        <script src="invite.js?v=1"></script>
         <!--JS for animate-->
             <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
             <script src="js/wow.min.js"></script>
@@ -40,7 +40,7 @@
                 <h3>Please Register</h3>
                 <div class="details-section">
 
-        <form name="register" action="register.php" method="POST" align="center">
+        <form name="register" action="invite.php" method="POST" align="center">
             <p>
             <input type="text" placeholder="用户名" name="name">
             </p>
@@ -59,7 +59,10 @@
                 <label><a href="javascript:void(0)" onclick="document.getElementById('captcha_img').src='setverifycode.php?r='+Math.random()">换一个</a> </label>
             </p>
             <p>
-                <input id="iid" type="text" name="iid" >
+                <input id="parentid" type="text" name="parentid" >
+            </p>
+            <p>
+                <input id="parenturl" type="text" name="url" >
             </p>
             <p>
                 <input type="submit" name="submit" value="注册">

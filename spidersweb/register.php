@@ -21,8 +21,8 @@ else {
     $token_exptime = time() + 60 * 60 * 24; //过期时间为24小时后
     $url = 'register.html';
     //$regstatus = 0;
-    echo $name;
-    echo $_SESSION['code'];
+    // echo $name;
+    // echo $_SESSION['code'];
     // $checkphone = "select "
     if (checkregEmpty($name, $password, $phone, $email, $verifycode, $url)) { //检查判空
         if (checkPhoneNum($phone, $url)) { //检查手机号格式

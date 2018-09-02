@@ -199,3 +199,33 @@ function getCollectgoods($gid)
     }
 }
 //collect
+//invite
+//方法：插入元组含邀请人
+function invite_insert($name, $password, $phone, $email, $token, $token_exptime, $regtime, $parentid)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "insert into account(id,username,password,phone,email,`token`,`token_exptime`,`regtime`,`parentid`) values (null,'$name','$password','$phone','$email','$token','$token_exptime','$regtime','$parentid');"; //向数据库插入表单传来的值的sql
+    // echo $addaccount;
+    $result = mysqli_query($con, $sql); //执行sql
+    return $result;
+}
+
+//方法：查询invite parent
+function getinviteid($parentid)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "select id from account where `parentid`='$parentid';";
+    $res = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_all($res); //获取行数
+    if ($rows) {
+        return $rows;
+    } else {
+        return 0;
+    }
+
+}
+
+
+//invite

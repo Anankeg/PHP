@@ -97,7 +97,7 @@ $(function(){
         $("#h1").text(name + "的收藏列表")
     }else{
         $("#tablelist").empty();
-        table_html = "<h1 align=\"center\" >此分享已失效哦</h1>";
+        var table_html = "<h1 align=\"center\" >此分享已失效哦</h1>";
         $("#tablelist").append(table_html);
         $("#pageSize").hide();
     }

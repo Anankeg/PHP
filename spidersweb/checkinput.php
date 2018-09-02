@@ -15,6 +15,16 @@ function checkEmpty($username, $password, $verifycode, $url)
     }
 }
 
+//判断好友id石否为空
+function checkpidEmpty($parentid)
+{
+    if ($parentid == null) {
+        echo '<html><head><Script Language="JavaScript">alert("分享已失效");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url='$url'\">";
+    } else {
+       return true;
+    }
+}
+
 //注册页面判空
 function checkregEmpty($username, $password, $phone, $email, $verifycode, $url)
 {
