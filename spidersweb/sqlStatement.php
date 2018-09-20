@@ -1,7 +1,6 @@
 <?php
 include_once "connect.php";
 
-
 //方法：插入元组
 function insert($name, $password, $phone, $email, $token, $token_exptime, $regtime)
 {
@@ -30,7 +29,7 @@ function getrows($tablename)
 }
 
 //查询条件下数据库行数
-function getConditionRows($tablename,$where)
+function getConditionRows($tablename, $where)
 {
     $con = my_sqli();
     mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
@@ -62,12 +61,12 @@ function getcolums($tablename)
 }
 
 //查询数据库中从$start开始的$limit条元组
-function getdata($tablename,$condition,$start,$limit)
+function getdata($tablename, $condition, $start, $limit)
 {
     $con = my_sqli();
     mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
     $sql = "select id,name,`desc`,price from goods order by '.$condition.' desc limit $start,$limit;";
-    $res = mysqli_query($con,$sql);
+    $res = mysqli_query($con, $sql);
     return $res;
 }
 
@@ -138,7 +137,7 @@ function updatePassword($newpassword, $password, $phone)
 
 //collec
 //查询数据库收藏表中的收藏数据
-function getCollectStatus($gid,$uid)
+function getCollectStatus($gid, $uid)
 {
     $con = my_sqli();
     mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
@@ -149,7 +148,7 @@ function getCollectStatus($gid,$uid)
 }
 
 //删除数据库中的收藏表的元组
-function delCollectitem($gid,$uid)
+function delCollectitem($gid, $uid)
 {
     $con = my_sqli();
     mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
@@ -216,9 +215,9 @@ function getinviteid($parentid)
 {
     $con = my_sqli();
     mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
-    $sql = "select id from account where `parentid`='$parentid';";
+    $sql = "select id, username, parentid from account where `parentid`='$parentid';";
     $res = mysqli_query($con, $sql);
-    $rows = mysqli_fetch_all($res); //获取行数
+    $rows = mysqli_fetch_all($res, MYSQLI_ASSOC); //获取行数
     if ($rows) {
         return $rows;
     } else {
@@ -227,5 +226,20 @@ function getinviteid($parentid)
 
 }
 
+//
+function getinviteroot($id)
+{
+    $con = my_sqli();
+    mysqli_query($con, "set names utf8"); //utf8 设为对应的编码
+    $sql = "select id, username, parentid from account where `id`='$id';";
+    $res = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_array($res, MYSQLI_ASSOC); //获取行数
+    if ($rows) {
+        return $rows;
+    } else {
+        return 0;
+    }
+
+}
 
 //invite
